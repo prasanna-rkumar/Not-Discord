@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ChannelsContainer from "./components/Channels/ChannelContainer";
+import ChatContainer from "./components/Chat/ChatContainer";
+import ServerList from "./components/Servers/ServerList";
+import TopNavbar from "./components/TopNavbar";
+import { AppContextProvider } from "./contexts/AppContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContextProvider>
+      <div className="w-screen h-screen bg-gray-light flex flex-row justify-start items-stretch">
+        <ServerList />
+        <ChannelsContainer />
+        <main className="flex-1 flex flex-col justify-start items-stretch">
+          <TopNavbar />
+          <ChatContainer />
+        </main>
+      </div>
+    </AppContextProvider>
   );
 }
 
