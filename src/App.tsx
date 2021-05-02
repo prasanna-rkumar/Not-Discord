@@ -10,7 +10,7 @@ function App() {
       <div className="w-screen h-screen bg-gray-light flex flex-row justify-start items-stretch">
         <ServerList />
         <ChannelsContainer />
-        <main className="flex-1 flex flex-col justify-start items-stretch">
+        <main className="flex-1 flex flex-col justify-start items-stretch overflow-hidden">
           <TopNavbar />
           <ChatContainer />
         </main>

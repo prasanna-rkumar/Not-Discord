@@ -2,7 +2,6 @@ import { FaHashtag } from "react-icons/fa";
 
 interface Props {
   name: string;
-  id: string;
   isSelected: boolean;
   onClick: () => void;
 }

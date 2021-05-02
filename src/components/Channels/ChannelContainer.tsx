@@ -47,7 +47,7 @@ const ChannelsList = ({ selectedServer }: Props) => {
                 onClick={() => {
                   changeChannel(channel);
                 }}
-                id={channel.id}
+                key={channel.id}
                 name={channel.data().name}
                 isSelected={channel.id === selectedChannel?.id}
               />

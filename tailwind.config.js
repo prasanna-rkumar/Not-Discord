@@ -3,11 +3,18 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
+      "message-hover": {
+        DEFAULT: "rgba(4, 4, 5, 0.07)"
+      },
+      transparent: {
+        DEFAULT: "#00000000"
+      },
       white: {
         hover: "#dcddde",
         muted: "#72767d",
         dark: "#d5d6d7",
         DEFAULT: "#FFF",
+        normal: "#DCDDDE",
       },
       gray: {
         darkest: "#202225",
