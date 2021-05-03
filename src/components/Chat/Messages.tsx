@@ -1,11 +1,12 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { AppContext } from "../../contexts/AppContext";
-import { MdSend } from "react-icons/md";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { discordFirestore } from "../../firebase";
+import ChatInput from "./ChatInput";
 
 const Messages = () => {
   const { selectedServer, selectedChannel } = useContext(AppContext);
+  const messageScrollerRef = useRef<HTMLDivElement>(null);
   const [snapshot] = useCollection(
     discordFirestore
       .collection("servers")
@@ -13,65 +14,55 @@ const Messages = () => {
       .collection("channels")
       .doc(selectedChannel?.id)
       .collection("chat")
+      .orderBy("createdAt", "asc")
   );
+
   useEffect(() => {
-    console.log('opened')
-    return (() => {
-      console.log('closed')
-      discordFirestore.collection("users").doc("CbPIkA8BTK17xBBzouoh").update({
-        isOnline: false,
-      })
-    });
-  }, []);
+    if (messageScrollerRef) {
+      messageScrollerRef.current?.addEventListener('DOMNodeInserted', event => {
+        messageScrollerRef.current?.scroll({ top: messageScrollerRef.current?.scrollHeight });
+      });
+    }
+  }, [])
+
   return (
     <div className="flex-1 bg-gray-light min-w-0 overflow-hidden">
       <div className="h-full flex flex-col justify-between items-stretch">
-        <div className="flex-1 min-h-0 min-w-0 flex flex-col relative">
-          {snapshot?.docs.map((message) => (
-            <div
-              key={message.id}
-              className="relative pl-20 pr-12 mt-4 mr-1 py-0.5 hover:bg-message-hover"
-              style={{
-                minHeight: "2.75rem",
-              }}
-            >
-              <img
-                className="w-10 h-10 rounded-full absolute left-6 top-1"
-                alt={message.data().name}
-                src={message.data().dp}
-              />
-              <h2 className="flex justify-start gap-2 items-baseline">
-                <span className="font-medium text-base text-white">
-                  {message.data().name}
-                </span>
-                <span className="text-xs text-white-muted">{message.data().createdAt.seconds}</span>
-              </h2>
-              <p className="text-white-normal">
-                {message.data().body}
-              </p>
-            </div>
-          ))}
-        </div>
-        <form
-          style={{
-            minWidth: 240,
-          }}
-          className="h-16 pb-1 px-4 flex justify-between items-center relative"
+        <div
+          ref={messageScrollerRef}
+          className="flex-1 overflow-y-scroll min-h-0 min-w-0 flex flex-col relative"
         >
-          <input
-            style={{
-              caretColor: "white",
-            }}
-            className="w-full outline-none flex-1 rounded-lg bg-gray-lightest placeholder-white-muted h-11 pl-6"
-            placeholder={`Message #${selectedChannel?.data().name}`}
-          />
-          <button>
-            <MdSend
-              size={20}
-              className="transform -translate-y-1/2 text-white-dark absolute top-1/2 right-8"
-            />
-          </button>
-        </form>
+          {snapshot?.docs.map((message) => {
+            return (
+              <div
+                key={message.id}
+                className="relative pl-20 pr-12 mt-4 mr-1 py-0.5 hover:bg-message-hover"
+                style={{
+                  minHeight: "2.75rem",
+                }}
+              >
+                <img
+                  className="w-10 h-10 rounded-full absolute left-6 top-1"
+                  alt={message.data().name}
+                  src={message.data().dp}
+                />
+                <h2 className="flex justify-start gap-2 items-baseline">
+                  <span className="font-medium text-base text-white">
+                    {message.data().name}
+                  </span>
+                  <span className="text-xs text-white-muted">
+                    {message.data().createdAt?.seconds}
+                  </span>
+                </h2>
+                <p className="text-white-normal">{message.data().body}</p>
+              </div>
+            );
+          })}
+        </div>
+        <ChatInput
+          selectedChannel={selectedChannel}
+          selectedServer={selectedServer}
+        />
       </div>
     </div>
   );
