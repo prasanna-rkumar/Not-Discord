@@ -2,7 +2,17 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontSize: {
+      xxs: ".7rem",
+      xs: ".75rem",
+      md: ".825rem",
+      base: '1rem',
+
+    },
     colors: {
+      danger: {
+        DEFAULT: "#F04747"
+      },
       "message-hover": {
         DEFAULT: "rgba(4, 4, 5, 0.07)"
       },
@@ -17,8 +27,8 @@ module.exports = {
         normal: "#DCDDDE",
       },
       gray: {
+        alt: "#292B2F",
         darkest: "#202225",
-        dark: "#292B2F",
         DEFAULT: "#2F3136",
         light: "#36393F",
         lightest: "#40444B"
@@ -28,8 +38,12 @@ module.exports = {
   },
   variants: {
     extend: {
+      display: ['group-hover'],
       scale: ['group-hover'],
       borderRadius: ['hover'],
+      backgroundColor: ['active'],
+      backgroundOpacity: ['active'],
+      textColor: ['active'],
     },
   },
   plugins: [],
