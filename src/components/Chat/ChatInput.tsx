@@ -5,7 +5,7 @@ import { MdSend } from "react-icons/md";
 interface Props {
   selectedServer: any;
   selectedChannel: any;
-};
+}
 
 const ChatInput = ({ selectedServer, selectedChannel }: Props) => {
   const [message, setMessage] = useState("");
@@ -17,6 +17,7 @@ const ChatInput = ({ selectedServer, selectedChannel }: Props) => {
       }}
       onSubmit={(e) => {
         e.preventDefault();
+        if (message.trim() === "") return;
         discordFirestore
           .collection("servers")
           .doc(selectedServer?.id)
@@ -24,15 +25,14 @@ const ChatInput = ({ selectedServer, selectedChannel }: Props) => {
           .doc(selectedChannel?.id)
           .collection("chat")
           .add({
-            body: message,
+            body: message.trim(),
             createdAt: firebaseTimestamp(),
             dp:
               "https://cdn.discordapp.com/avatars/441263263947423754/ba5e779d3adb7b0844b856e60398e6ed.png?size=128",
             name: "Prasanna Kumar",
             uid: "1qw23er45ty67ui8",
           })
-          .then((e) => {
-          })
+          .then((e) => {})
           .catch((error) => {
             console.log(error);
           })

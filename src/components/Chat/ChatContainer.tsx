@@ -7,7 +7,9 @@ const ChatContainer = () => {
   const { selectedChannel } = useContext(AppContext);
   return (
     <div className="flex flex-row justify-start items-stretch w-full h-full">
-      {selectedChannel && <Messages />}
+      <div className="flex-1 bg-gray-light min-w-0 overflow-hidden">
+        {selectedChannel && <Messages />}
+      </div>
       <OnlineStatusList />
     </div>
   );
