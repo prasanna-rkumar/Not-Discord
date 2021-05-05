@@ -13,6 +13,9 @@ module.exports = {
       danger: {
         DEFAULT: "#F04747"
       },
+      success : {
+        DEFAULT: "#43b582"
+      },
       "message-hover": {
         DEFAULT: "rgba(4, 4, 5, 0.07)"
       },

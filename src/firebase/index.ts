@@ -3,24 +3,27 @@ import firebase from 'firebase/app'
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
+import 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCWj5THCSULp3JoM8gTFATmMuFHFuOfcIU",
-  authDomain: "this-is-not-discord.firebaseapp.com",
-  projectId: "this-is-not-discord",
-  storageBucket: "this-is-not-discord.appspot.com",
-  messagingSenderId: "228380085202",
-  appId: "1:228380085202:web:a8a3a1c426b64ed5b1160b",
-  measurementId: "G-GDRP1DBXMB"
+  apiKey: "AIzaSyCFbAx2SDNqx7Ev_hxsSvFuIefB2VeaGVs",
+  authDomain: "not-discord-1e20a.firebaseapp.com",
+  databaseURL: "https://not-discord-1e20a-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "not-discord-1e20a",
+  storageBucket: "not-discord-1e20a.appspot.com",
+  messagingSenderId: "197992175151",
+  appId: "1:197992175151:web:f18386c902afacce1698da"
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const discordFirestore = firebase.firestore();
 const discordAuth = firebase.auth();
+const discordDatabase = firebase.database();
 
 const GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 
 const firebaseTimestamp = firebase.firestore.FieldValue.serverTimestamp;
+const databaseTimestamp = firebase.database.ServerValue.TIMESTAMP;
 
-export { discordFirestore, discordAuth, firebaseTimestamp, GoogleAuthProvider };
+export { discordFirestore, discordAuth, discordDatabase, firebaseTimestamp, databaseTimestamp, GoogleAuthProvider };

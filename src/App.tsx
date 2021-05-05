@@ -3,8 +3,11 @@ import ChatContainer from "./components/Chat/ChatContainer";
 import ServerList from "./components/Servers/ServerList";
 import TopNavbar from "./components/TopNavbar";
 import { AppContextProvider } from "./contexts/AppContext";
+import useOnlinePresende from "./hooks/useOnlinePresence";
 
 function App() {
+  const asp = useOnlinePresende();
+  console.log(asp);
   return (
     <AppContextProvider>
       <div className="w-screen h-screen bg-gray-light flex flex-row justify-start items-stretch">
