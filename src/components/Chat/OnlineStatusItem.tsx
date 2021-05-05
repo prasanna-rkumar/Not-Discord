@@ -5,7 +5,6 @@ interface Props {
 }
 
 const OnlineStatusItem = ({ profilePicture, fullname, state }: Props) => {
-  console.log(state);
   return (
     <div className="flex flex-row cursor-pointer justify-start items-center py-2 hover:bg-gray-light px-2 overflow-hidden rounded">
       <div className="relative">
