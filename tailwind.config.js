@@ -7,13 +7,18 @@ module.exports = {
       xs: ".75rem",
       md: ".825rem",
       base: '1rem',
-
+      lg: '1.125rem',
+      xl: '1.25rem',
+      '2xl': '1.5rem',
+      '3xl': '1.875rem',
+      '4xl': '2.25rem',
+      '5xl': '3rem',
     },
     colors: {
       danger: {
         DEFAULT: "#F04747"
       },
-      success : {
+      success: {
         DEFAULT: "#43b582"
       },
       "message-hover": {
@@ -28,6 +33,10 @@ module.exports = {
         dark: "#d5d6d7",
         DEFAULT: "#FFF",
         normal: "#DCDDDE",
+      },
+      black: {
+        DEFAULT: "#000",
+        subtitle: "#4f5660",
       },
       gray: {
         alt: "#292B2F",
