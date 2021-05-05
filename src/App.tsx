@@ -6,8 +6,7 @@ import { AppContextProvider } from "./contexts/AppContext";
 import useOnlinePresende from "./hooks/useOnlinePresence";
 
 function App() {
-  const asp = useOnlinePresende();
-  console.log(asp);
+  useOnlinePresende();
   return (
     <AppContextProvider>
       <div className="w-screen h-screen bg-gray-light flex flex-row justify-start items-stretch">

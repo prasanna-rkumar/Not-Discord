@@ -24,7 +24,6 @@ const UserMenu = () => {
               createdAt,
               updatedAt: createdAt,
             })
-            .then((data) => console.log(data));
         }
       })
       .catch((error) => {

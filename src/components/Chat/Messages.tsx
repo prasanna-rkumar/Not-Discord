@@ -38,11 +38,6 @@ const Messages = () => {
     const prevMessageData = prevMessage.data();
     const currentMessageData = snapshot?.docs[index].data();
 
-    console.log(
-      prevMessageData.body,
-      currentMessageData?.body
-    );
-
     if (
       dateAgo(prevMessageData.createdAt) ===
       dateAgo(currentMessageData?.createdAt)
