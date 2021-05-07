@@ -15,6 +15,9 @@ module.exports = {
       '5xl': '3rem',
     },
     colors: {
+      primary: {
+        DEFAULT: "#7289da",
+      },
       danger: {
         DEFAULT: "#F04747"
       },

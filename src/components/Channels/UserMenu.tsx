@@ -44,7 +44,7 @@ const UserMenu = () => {
             <img
               className="h-8 w-8 rounded-full inline mr-2"
               alt="dp"
-              src={user.photoURL ?? "https://discord.com/assets/dd4dbc0016779df1378e7812eabaa04d.png"}
+              src={`https://ui-avatars.com/api/?name=${user?.displayName}&background=random`}
             />
             <span className="font-semibold text-md text-white">
               {user.displayName}
