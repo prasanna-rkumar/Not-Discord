@@ -38,6 +38,8 @@ const Messages = () => {
     const prevMessageData = prevMessage.data();
     const currentMessageData = snapshot?.docs[index].data();
 
+    if (currentMessageData?.createdAt === null) return false;
+
     if (
       dateAgo(prevMessageData.createdAt) ===
       dateAgo(currentMessageData?.createdAt)
@@ -53,16 +55,16 @@ const Messages = () => {
         ref={messageScrollerRef}
         className="flex-1 custom-scroll overflow-x-hidden overflow-y-scroll min-h-0 min-w-0 flex flex-col relative mr-1"
       >
-        <div className="h-4" key="top-margin">
-
-        </div>
+        <div className="h-4" key="top-margin"></div>
         {snapshot?.docs.map((message, index) => {
           const showMessageTitle = shouldRenderMessageHeading(index);
           const date = dateAgo(message.data().createdAt?.seconds);
           return (
             <div
               key={message.id}
-              className="relative pl-20 pr-12 pt-0.5 mr-1 group hover:bg-message-hover"
+              className={`relative pl-20 pr-12 pt-0.5 mr-1 group hover:bg-message-hover ${
+                showMessageTitle && "mt-2"
+              }`}
             >
               <div
                 style={{
@@ -83,15 +85,15 @@ const Messages = () => {
                   <img
                     className="w-10 h-10 rounded-full absolute left-6 top-1"
                     alt={message.data().name}
-                    src={message.data().dp}
+                    src={`https://ui-avatars.com/api/?name=${
+                      message.data().name
+                    }&background=random`}
                   />
                   <h2 className="flex justify-start gap-2 items-baseline">
                     <span className="font-medium text-base text-white">
                       {message.data().name}
                     </span>
-                    <span className="text-xs text-white-muted">
-                      {date}
-                    </span>
+                    <span className="text-xs text-white-muted">{date}</span>
                   </h2>
                 </>
               ) : (
