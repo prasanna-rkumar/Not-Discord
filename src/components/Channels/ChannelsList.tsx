@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { AppContext } from "../../contexts/AppContext";
 import { discordFirestore } from "../../firebase";
