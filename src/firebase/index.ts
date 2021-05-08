@@ -20,10 +20,11 @@ firebase.initializeApp(firebaseConfig);
 const discordFirestore = firebase.firestore();
 const discordAuth = firebase.auth();
 const discordDatabase = firebase.database();
+const discordStorage = firebase.storage();
 
 const GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 
 const firebaseTimestamp = firebase.firestore.FieldValue.serverTimestamp;
 const databaseTimestamp = firebase.database.ServerValue.TIMESTAMP;
 
-export { discordFirestore, discordAuth, discordDatabase, firebaseTimestamp, databaseTimestamp, GoogleAuthProvider };
+export { discordFirestore, discordAuth, discordDatabase, discordStorage, firebaseTimestamp, databaseTimestamp, GoogleAuthProvider };

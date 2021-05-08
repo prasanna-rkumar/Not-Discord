@@ -4,32 +4,11 @@ import {
   discordAuth,
   discordDatabase,
   databaseTimestamp,
-  GoogleAuthProvider,
 } from "../../firebase";
-import { useCallback } from "react";
+import loginWithGoogle from "../../utils/loginWithGoogle";
 
 const UserMenu = () => {
   const [user, loading, error] = useAuthState(discordAuth);
-
-  const loginWithGoogle = useCallback(() => {
-    discordAuth
-      .signInWithPopup(new GoogleAuthProvider())
-      .then(({ user, additionalUserInfo }) => {
-        if (additionalUserInfo?.isNewUser) {
-          const createdAt = databaseTimestamp;
-          discordDatabase.ref(`users/${user?.uid}`).set({
-            fullname: user?.displayName,
-            email: user?.email,
-            profile_picture: user?.photoURL,
-            createdAt,
-            updatedAt: createdAt,
-          });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   return (
     <div
