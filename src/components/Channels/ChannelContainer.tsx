@@ -7,9 +7,13 @@ import ServerTitle from "./ServerTitle";
 import UserMenu from "./UserMenu";
 
 const ChannelsContainer = () => {
-  const { selectedServer } = useContext(AppContext);
+  const { selectedServer, selectedChannel } = useContext(AppContext);
   return (
-    <div className="bg-gray w-60 flex flex-col justify-between items-stretch">
+    <div
+      className={`bg-gray lg:w-60 h-full flex flex-col justify-between items-stretch absolute w-full ${
+        selectedChannel === undefined ? " right-0" : " -left-full"
+      } lg:static`}
+    >
       <ServerTitle />
       <div className="pt-4 flex-1 custom-scroll overflow-y-auto overflow-x-hidden">
         {selectedServer && (

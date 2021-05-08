@@ -6,6 +6,7 @@ module.exports = {
       xxs: ".7rem",
       xs: ".75rem",
       md: ".825rem",
+      "mobile-paragraph": "14px",
       base: '1rem',
       lg: '1.125rem',
       xl: '1.25rem',

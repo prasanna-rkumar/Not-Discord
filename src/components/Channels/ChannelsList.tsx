@@ -27,10 +27,10 @@ const ChannelsList = ({ selectedServer }: Props) => {
   );
   const { changeChannel, selectedChannel } = useContext(AppContext);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (snapshot?.docs && snapshot.docs.length > 0 && selectedChannel === undefined)
       changeChannel(snapshot.docs[0]);
-  }, [snapshot, changeChannel, selectedChannel]);
+  }, [snapshot, changeChannel, selectedChannel]); */
 
   return (
     <>

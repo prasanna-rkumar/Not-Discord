@@ -36,7 +36,7 @@ const MessageItem = ({ prevMessage, currentMessage }: Props) => {
   return (
     <div
       key={currentMessage.id}
-      className={`relative pl-20 pr-12 pt-0.5 mr-1 group hover:bg-message-hover ${
+      className={`relative pl-10 lg:pl-20 pr-12 pt-0.5 mr-1 group hover:bg-message-hover ${
         showMessageTitle && "mt-2"
       }`}
     >
@@ -65,19 +65,19 @@ const MessageItem = ({ prevMessage, currentMessage }: Props) => {
       {showMessageTitle ? (
         <>
           <img
-            className="w-10 h-10 rounded-full absolute left-6 top-1"
+            className="w-8 h-8 rounded-full absolute left-1 lg:left-6 top-1"
             alt={currentMessageData.name}
             src={`https://ui-avatars.com/api/?name=${currentMessageData.name}&background=random`}
           />
-          <h2 className="flex justify-start gap-2 items-baseline">
-            <span className="font-medium text-base text-chat-sender">
+          <h2 className="flex mb-1 lg:mb-0 lg:flex-row justify-start gap-1 lg:gap-2 items-end">
+            <span className="font-medium text-mobile-paragraph lg:text-base text-chat-sender">
               {currentMessageData.name}
             </span>
-            <span className="text-xs text-white-muted">{date}</span>
+            <span className="text-xxs lg:text-xs text-white-muted">{date}</span>
           </h2>
         </>
       ) : (
-        <div className="hidden group-hover:block absolute left-4 top-1.5 text-white-muted text-xxs">
+        <div className="hidden lg:group-hover:block absolute left-4 top-1.5 text-white-muted text-xxs">
           {date.substring(date.indexOf(" "))}
         </div>
       )}
@@ -88,7 +88,7 @@ const MessageItem = ({ prevMessage, currentMessage }: Props) => {
           onCancel={() => setEditing(false)}
         />
       ) : (
-        <p className="text-white-normal leading-5 pb-1">
+        <p className="text-white-normal text-mobile-paragraph leading-5 pb-1">
           {urlify(currentMessageData.body)}
           {currentMessageData.edited && (
             <span className="text-xxs font-light text-white text-opacity-30">
