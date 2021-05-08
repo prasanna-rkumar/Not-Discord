@@ -77,7 +77,7 @@ const NewChannel = () => {
                     onChange={(e) => setChannelName(e.target.value)}
                   />
                 </div>
-                <div className="w-full bg-white-hover bg-opacity-20 p-4 flex items-center justify-between">
+                <div className="w-full text-black bg-white-hover bg-opacity-20 p-4 flex items-center justify-between">
                   <button
                     type="button"
                     onClick={() => {
