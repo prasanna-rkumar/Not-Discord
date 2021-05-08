@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { AppContext } from "../../contexts/AppContext";
 import { discordFirestore } from "../../firebase";
@@ -8,6 +8,12 @@ import ServerItem from "./ServerItem";
 const ServerList = () => {
   const [snapshot] = useCollection(discordFirestore.collection("servers"));
   const { changeServer, selectedServer } = useContext(AppContext);
+
+  useEffect(() => {
+    if (snapshot?.docs && snapshot.docs.length > 0 && selectedServer === undefined)
+      changeServer(snapshot?.docs[0]);
+  }, [snapshot, changeServer, selectedServer]);
+
   return (
     <div className="bg-gray-darkest">
       <div className="w-16 py-2">

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { AppContext } from "../../contexts/AppContext";
 import { discordFirestore } from "../../firebase";
@@ -26,9 +26,15 @@ const ChannelsList = ({ selectedServer }: Props) => {
       .collection("channels")
   );
   const { changeChannel, selectedChannel } = useContext(AppContext);
+
+  useEffect(() => {
+    if (snapshot?.docs && snapshot.docs.length > 0 && selectedChannel === undefined)
+      changeChannel(snapshot.docs[0]);
+  }, [snapshot, changeChannel, selectedChannel]);
+
   return (
     <>
-      {snapshot?.docs.map((channel, index) => {
+      {snapshot?.docs.map((channel) => {
         return (
           <ChannelItem
             onClick={() => {
