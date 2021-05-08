@@ -12,7 +12,8 @@ const ServerList = () => {
     <div className="bg-gray-darkest">
       <div className="w-16 py-2">
         <img
-          className="mx-auto"
+          onClick={() => changeServer()}
+          className="mx-auto cursor-pointer"
           src="/discord.png"
           width={36}
           height={36}

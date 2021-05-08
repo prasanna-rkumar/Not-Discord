@@ -3,7 +3,7 @@ import { QueryDocumentSnapshot } from "@firebase/firestore-types";
 
 interface Props {
   selectedServer: QueryDocumentSnapshot | undefined;
-  changeServer: (server: QueryDocumentSnapshot) => void;
+  changeServer: (server?: QueryDocumentSnapshot | undefined) => void;
   selectedChannel: QueryDocumentSnapshot | undefined;
   changeChannel: (server: QueryDocumentSnapshot) => void;
 }
@@ -23,8 +23,7 @@ export const AppContextProvider: FC = ({ children }) => {
     QueryDocumentSnapshot | undefined
   >();
 
-  const changeServer = (server: QueryDocumentSnapshot) => {
-    if (server.id === selectedServer?.id) return;
+  const changeServer = (server?: QueryDocumentSnapshot | undefined) => {
     setSelectedServer(server);
     setSelectedChannel(undefined);
   };
