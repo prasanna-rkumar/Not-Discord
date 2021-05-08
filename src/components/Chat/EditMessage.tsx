@@ -27,16 +27,17 @@ const EditMessage = ({ onCancel, selectedMessage }: Props) => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+    onCancel();
     if (message.trim() === "") {
       selectedMessage?.ref.delete();
       return;
     }
+    if (selectedMessage?.data().body === message.trim()) return;
     selectedMessage?.ref.update({
       body: message.trim(),
       updatedAt: firebaseTimestamp(),
       edited: true,
     });
-    onCancel();
   };
 
   return (
