@@ -26,6 +26,7 @@ export const AppContextProvider: FC = ({ children }) => {
   const changeServer = (server: QueryDocumentSnapshot) => {
     if (server.id === selectedServer?.id) return;
     setSelectedServer(server);
+    setSelectedChannel(undefined);
   };
 
   const changeChannel = (channel: QueryDocumentSnapshot) => {

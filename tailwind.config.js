@@ -59,6 +59,7 @@ module.exports = {
       backgroundColor: ['active'],
       backgroundOpacity: ['active'],
       textColor: ['active'],
+      cursor: ['disabled'],
     },
   },
   plugins: [],
