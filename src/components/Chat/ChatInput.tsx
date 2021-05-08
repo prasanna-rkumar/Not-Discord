@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   discordAuth,
   discordFirestore,
@@ -14,6 +14,7 @@ interface Props {
 
 const ChatInput = ({ selectedServer, selectedChannel }: Props) => {
   const [message, setMessage] = useState("");
+  const messageRef = useRef<HTMLTextAreaElement>(null);
 
   return (
     <form
@@ -48,19 +49,31 @@ const ChatInput = ({ selectedServer, selectedChannel }: Props) => {
             setMessage("");
           });
       }}
-      className="h-16 pb-1 px-4 flex justify-between items-center relative"
+      className="pb-1 h-auto mb-3 lg:mb-6 px-4 flex justify-between items-center relative"
     >
-      <input
+      <textarea
+        onKeyUp={() => {
+          if (messageRef.current !== null) {
+            if (messageRef.current.scrollHeight <= 48) {
+              messageRef.current.style.height = "40px";
+              return;
+            }
+            if (messageRef.current.scrollHeight >= 350) return;
+            messageRef.current.style.height = "24px";
+            messageRef.current.style.height =
+              messageRef.current.scrollHeight + "px";
+          }
+        }}
+        ref={messageRef}
         disabled={!selectedChannel || !selectedServer}
         style={{
           caretColor: "white",
         }}
         onChange={(e) => {
-          if (e.target.value.length > 128) return;
           setMessage(e.target.value);
         }}
         value={message}
-        className="w-full text-mobile-paragraph text-white-dark outline-none flex-1 rounded-lg bg-gray-lightest placeholder-white-muted h-11 pl-6 disabled:cursor-not-allowed"
+        className="w-full h-10 py-2 box-border resize-none text-mobile-paragraph lg:text-base text-white-dark outline-none rounded-lg bg-gray-lightest placeholder-white-muted custom-scroll pl-6 disabled:cursor-not-allowed"
         placeholder={`Message #${selectedChannel?.data().name}`}
       />
       <button>

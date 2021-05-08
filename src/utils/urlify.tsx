@@ -14,6 +14,5 @@ export default function urlify(text: string) {
       </a>
     );
   }
-  console.log(parts);
   return parts;
 }
