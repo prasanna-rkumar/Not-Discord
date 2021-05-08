@@ -13,7 +13,7 @@ const ChannelsContainer = () => {
       <ServerTitle />
       <div className="pt-4 flex-1 custom-scroll overflow-y-auto overflow-x-hidden">
         {selectedServer && (
-          <h6 className="text-xs ml-2 mb-1 font-bold uppercase text-white-muted flex items-center justify-between pr-2">
+          <h6 className="text-xs ml-2 mb-1 font-bold uppercase text-white-muted flex items-center justify-between pr-2 hover:text-white-dark">
             <span>
               <FiChevronDown className="inline" size={12} />
               Text channels
