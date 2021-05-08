@@ -37,14 +37,19 @@ const Messages = () => {
         ref={messageScrollerRef}
         className="flex-1 custom-scroll overflow-x-hidden overflow-y-scroll min-h-0 min-w-0 flex flex-col relative mr-1"
       >
-        <div className="h-4" key="top-margin"></div>
+        <div className="" key="top-margin">
+          <div className="h-4"></div>
+        </div>
         {snapshot?.docs.map((currentMessage, index) => (
           <MessageItem
-          key={currentMessage.id}
+            key={currentMessage.id}
             currentMessage={currentMessage}
             prevMessage={snapshot.docs[index - 1]}
           />
         ))}
+        <div className="" key="bottom-margin">
+          <div className="h-4"></div>
+        </div>
       </div>
       <ChatInput
         selectedChannel={selectedChannel}
