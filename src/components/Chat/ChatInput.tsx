@@ -56,6 +56,7 @@ const ChatInput = ({ selectedServer, selectedChannel }: Props) => {
           caretColor: "white",
         }}
         onChange={(e) => {
+          if (e.target.value.length > 128) return;
           setMessage(e.target.value);
         }}
         value={message}
