@@ -44,7 +44,7 @@ const EditMessage = ({ onCancel, selectedMessage }: Props) => {
     <form onSubmit={onSubmit} className="my-2">
       <input
         ref={messageRef}
-        className="w-full text-white-normal rounded-xl px-4 py-2.5 bg-gray-lightest outline-none"
+        className="w-full text-mobile-paragraph text-white-normal rounded-xl px-4 py-2.5 bg-gray-lightest outline-none"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />

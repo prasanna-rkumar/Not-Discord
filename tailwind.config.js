@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
@@ -56,6 +58,9 @@ module.exports = {
         lightest: "#40444B"
       }
     },
+    screens: {
+      lg: "900px",
+    },
     extend: {},
   },
   variants: {
@@ -69,5 +74,15 @@ module.exports = {
       cursor: ['disabled'],
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        '.channels-container-mobile': {
+          width: 'calc(100vw - 64px)',
+        }
+      }
+
+      addUtilities(newUtilities, ['responsive'])
+    })
+  ],
 };

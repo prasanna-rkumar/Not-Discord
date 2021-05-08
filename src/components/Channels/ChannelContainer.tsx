@@ -11,7 +11,7 @@ const ChannelsContainer = () => {
   return (
     <div
       className={`bg-gray lg:w-60 h-full flex flex-col justify-between items-stretch absolute w-full ${
-        selectedChannel === undefined ? " right-0" : " -left-full"
+        selectedChannel === undefined ? " channels-container-mobile right-0" : " -left-full"
       } lg:static`}
     >
       <ServerTitle />

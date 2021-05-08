@@ -36,7 +36,7 @@ const MessageItem = ({ prevMessage, currentMessage }: Props) => {
   return (
     <div
       key={currentMessage.id}
-      className={`relative pl-10 lg:pl-20 pr-12 pt-0.5 mr-1 group hover:bg-message-hover ${
+      className={`relative pl-11 lg:pl-20 pr-12 pt-0.5 mr-1 group hover:bg-message-hover ${
         showMessageTitle && "mt-2"
       }`}
     >
@@ -69,7 +69,7 @@ const MessageItem = ({ prevMessage, currentMessage }: Props) => {
             alt={currentMessageData.name}
             src={`https://ui-avatars.com/api/?name=${currentMessageData.name}&background=random`}
           />
-          <h2 className="flex mb-1 lg:mb-0 lg:flex-row justify-start gap-1 lg:gap-2 items-end">
+          <h2 className="flex mt-1 lg:mt-0 lg:mb-0 lg:flex-row justify-start gap-1 lg:gap-2 items-end">
             <span className="font-medium text-mobile-paragraph lg:text-base text-chat-sender">
               {currentMessageData.name}
             </span>
@@ -88,7 +88,7 @@ const MessageItem = ({ prevMessage, currentMessage }: Props) => {
           onCancel={() => setEditing(false)}
         />
       ) : (
-        <p className="text-white-normal text-mobile-paragraph leading-5 pb-1">
+        <p className="text-white-normal text-mobile-paragraph leading-5 pb-0.5 lg:pb-1">
           {urlify(currentMessageData.body)}
           {currentMessageData.edited && (
             <span className="text-xxs font-light text-white text-opacity-30">
