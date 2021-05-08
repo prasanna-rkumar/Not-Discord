@@ -15,6 +15,9 @@ module.exports = {
       '5xl': '3rem',
     },
     colors: {
+      "chat-sender": {
+        DEFAULT: "#e91e63"
+      },
       primary: {
         DEFAULT: "#7289da",
       },

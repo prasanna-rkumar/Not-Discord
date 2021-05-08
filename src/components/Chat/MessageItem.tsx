@@ -69,7 +69,7 @@ const MessageItem = ({ prevMessage, currentMessage }: Props) => {
             src={`https://ui-avatars.com/api/?name=${currentMessageData.name}&background=random`}
           />
           <h2 className="flex justify-start gap-2 items-baseline">
-            <span className="font-medium text-base text-white">
+            <span className="font-medium text-base text-chat-sender">
               {currentMessageData.name}
             </span>
             <span className="text-xs text-white-muted">{date}</span>
