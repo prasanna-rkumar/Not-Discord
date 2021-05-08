@@ -4,6 +4,7 @@ import { MdModeEdit, MdDelete } from "react-icons/md";
 import { useCallback, useState } from "react";
 import EditMessage from "./EditMessage";
 import { discordAuth } from "../../firebase";
+import urlify from "../../utils/urlify";
 
 interface Props {
   prevMessage: QueryDocumentSnapshot | undefined;
@@ -88,7 +89,7 @@ const MessageItem = ({ prevMessage, currentMessage }: Props) => {
         />
       ) : (
         <p className="text-white-normal leading-5 pb-1">
-          {currentMessageData.body}
+          {urlify(currentMessageData.body)}
           {currentMessageData.edited && (
             <span className="text-xxs font-light text-white text-opacity-30">
               {" "}
