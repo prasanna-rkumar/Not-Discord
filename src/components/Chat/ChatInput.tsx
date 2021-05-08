@@ -60,7 +60,7 @@ const ChatInput = ({ selectedServer, selectedChannel }: Props) => {
           setMessage(e.target.value);
         }}
         value={message}
-        className="w-full text-white-dark outline-none flex-1 rounded-lg bg-gray-lightest placeholder-white-muted h-11 pl-6 disabled:cursor-not-allowed"
+        className="w-full text-mobile-paragraph text-white-dark outline-none flex-1 rounded-lg bg-gray-lightest placeholder-white-muted h-11 pl-6 disabled:cursor-not-allowed"
         placeholder={`Message #${selectedChannel?.data().name}`}
       />
       <button>
