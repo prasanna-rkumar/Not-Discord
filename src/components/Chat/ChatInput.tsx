@@ -16,6 +16,33 @@ const ChatInput = ({ selectedServer, selectedChannel }: Props) => {
   const [message, setMessage] = useState("");
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
+  const sendMessage = () => {
+    if (!discordAuth.currentUser) {
+      loginWithGoogle();
+      return;
+    }
+    if (message.trim() === "") return;
+    if (!selectedChannel && !selectedServer) return;
+    setMessage("");
+    if (messageRef.current !== null) messageRef.current.style.height = "40px";
+    discordFirestore
+      .collection("servers")
+      .doc(selectedServer?.id)
+      .collection("channels")
+      .doc(selectedChannel?.id)
+      .collection("chat")
+      .add({
+        body: message.trim(),
+        createdAt: firebaseTimestamp(),
+        dp: discordAuth.currentUser?.photoURL,
+        name: discordAuth.currentUser?.displayName,
+        uid: discordAuth.currentUser?.uid,
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <form
       style={{
@@ -23,36 +50,17 @@ const ChatInput = ({ selectedServer, selectedChannel }: Props) => {
       }}
       onSubmit={(e) => {
         e.preventDefault();
-        if (!discordAuth.currentUser) {
-          loginWithGoogle();
-          return;
-        }
-        if (message.trim() === "") return;
-        if (!selectedChannel && !selectedServer) return;
-        discordFirestore
-          .collection("servers")
-          .doc(selectedServer?.id)
-          .collection("channels")
-          .doc(selectedChannel?.id)
-          .collection("chat")
-          .add({
-            body: message.trim(),
-            createdAt: firebaseTimestamp(),
-            dp: discordAuth.currentUser?.photoURL,
-            name: discordAuth.currentUser?.displayName,
-            uid: discordAuth.currentUser?.uid,
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-          .finally(() => {
-            setMessage("");
-          });
+        sendMessage();
       }}
       className="pb-1 h-auto mb-3 lg:mb-6 px-4 flex justify-between items-center relative"
     >
       <textarea
-        onKeyUp={() => {
+        onKeyUp={(e) => {
+          console.log(e);
+          if (e.code === "Enter") {
+            sendMessage();
+            return;
+          }
           if (messageRef.current !== null) {
             if (messageRef.current.scrollHeight <= 48) {
               messageRef.current.style.height = "40px";
