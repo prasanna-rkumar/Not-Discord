@@ -88,7 +88,7 @@ const MessageItem = ({ prevMessage, currentMessage }: Props) => {
           onCancel={() => setEditing(false)}
         />
       ) : (
-        <p className="text-white-normal text-mobile-paragraph leading-5 pb-0.5 lg:pb-1">
+        <p className="text-white-normal text-mobile-paragraph lg:text-base leading-5 pb-0.5 lg:pb-1">
           {urlify(currentMessageData.body)}
           {currentMessageData.edited && (
             <span className="text-xxs font-light text-white text-opacity-30">
