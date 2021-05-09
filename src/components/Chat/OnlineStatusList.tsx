@@ -6,7 +6,7 @@ const OnlineStatusList = () => {
   const [snapshot] = useList(discordDatabase.ref("users"));
 
   return (
-    <div className=" hidden  w-60 bg-gray lg:flex flex-col justify-start items-stretch gap-0.5 px-1 pt-6">
+    <div style={{height: "calc(100vh - 48px)"}} className="hidden custom-scroll w-60 bg-gray lg:block overflow-y-auto px-1 pt-6">
       {snapshot?.map((user) => (
         <OnlineStatusItem
           key={user.key}
@@ -15,6 +15,7 @@ const OnlineStatusList = () => {
           state={user.val().state}
         />
       ))}
+      <div className="h-12"></div>
     </div>
   );
 };
