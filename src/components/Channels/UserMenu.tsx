@@ -10,12 +10,33 @@ import loginWithGoogle from "../../utils/loginWithGoogle";
 const UserMenu = () => {
   const [user, loading, error] = useAuthState(discordAuth);
 
+  const loginWithTestCreds = () => {
+    discordAuth
+      .signInWithEmailAndPassword("tester@notdiscord.com", "12345678")
+      .then(({ user }) => {
+        user
+          ?.updateProfile({
+            displayName: "tester",
+          })
+          .then(() => {
+            const createdAt = databaseTimestamp;
+            discordDatabase.ref(`users/${user?.uid}`).set({
+              fullname: "tester",
+              email: user?.email,
+              profile_picture: "",
+              createdAt,
+              updatedAt: createdAt,
+            });
+          });
+      });
+  };
+
   return (
     <div
       style={{
-        height: 52,
+        height: "min-content",
       }}
-      className="bg-gray-alt px-2 flex justify-between items-center"
+      className="bg-gray-alt px-2 py-2 flex justify-between items-center"
     >
       {!loading && !error && user ? (
         <>
@@ -49,13 +70,22 @@ const UserMenu = () => {
           </button>
         </>
       ) : (
-        <button
-          onClick={loginWithGoogle}
-          className="text-success w-full p-1.5 rounded-sm outline-none hover:bg-success hover:bg-opacity-20 active:text-white active:bg-success active:bg-opacity-100 "
-        >
-          Login
-          <RiLoginCircleLine size={20} className="inline ml-2" />
-        </button>
+        <div className="w-full">
+          <button
+            onClick={loginWithGoogle}
+            className="text-success w-full p-1.5 rounded-sm outline-none hover:bg-success hover:bg-opacity-20 active:text-white active:bg-success active:bg-opacity-100 "
+          >
+            Login
+            <RiLoginCircleLine size={20} className="inline ml-2" />
+          </button>
+          <button
+            onClick={loginWithTestCreds}
+            className="text-success w-full p-1.5 rounded-sm outline-none hover:bg-success hover:bg-opacity-20 active:text-white active:bg-success active:bg-opacity-100 "
+          >
+            Test Login
+            <RiLoginCircleLine size={20} className="inline ml-2" />
+          </button>
+        </div>
       )}
     </div>
   );
